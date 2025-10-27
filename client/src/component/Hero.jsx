@@ -4,11 +4,9 @@ import titleImg from './title.png';
 import { Link } from 'react-router-dom';
 
 export default function WinterOfProjects() {
-   
-
   return (
     <div
-      className="relative min-h-screen text-white overflow-hidden bg-fixed bg-center bg-cover"
+      className="relative min-h-screen text-white overflow-hidden bg-fixed bg-center bg-cover pt-16"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundBlendMode: 'overlay',
@@ -31,19 +29,59 @@ export default function WinterOfProjects() {
         .fade-in {
           animation: fadeIn 1.5s ease-out forwards;
         }
+
+        @keyframes snowfall {
+          0% { 
+            transform: translateY(-10vh) translateX(0) rotate(0deg); 
+            opacity: 1; 
+          }
+          100% { 
+            transform: translateY(100vh) translateX(20px) rotate(360deg); 
+            opacity: 0.7; 
+          }
+        }
+
+        .snowflake {
+          position: absolute;
+          top: -10vh;
+          color: white;
+          font-size: 1.5em;
+          animation: snowfall linear infinite;
+          pointer-events: none;
+          z-index: 100;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+          user-select: none;
+        }
       `}</style>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-0"></div>
+      {/* Snowfall Effect - Improved visibility */}
+      {[...Array(50)].map((_, i) => (
+        <div
+          key={i}
+          className="snowflake"
+          style={{
+            left: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 8 + 5}s`,
+            animationDelay: `${Math.random() * 5}s`,
+            fontSize: `${Math.random() * 12 + 10}px`,
+            opacity: Math.random() * 0.3 + 0.7,
+          }}
+        >
+          ❄
+        </div>
+      ))}
 
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80 z-0"></div>
+
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8 text-center">
         {/* Direwolf Icon */}
         <div
-          className="fade-in mb-4"
+          className="fade-in mb-6"
           style={{ animationDelay: '0.2s', opacity: 0 }}
         >
           <svg
-            width="90"
-            height="90"
+            width="80"
+            height="80"
             viewBox="0 0 100 100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +95,7 @@ export default function WinterOfProjects() {
           </svg>
         </div>
 
-        {/* Title Image */}
+        {/* Title Image - Made bigger */}
         <div
           className="fade-in mb-6 flex justify-center"
           style={{ animationDelay: '0.4s', opacity: 0 }}
@@ -65,64 +103,62 @@ export default function WinterOfProjects() {
           <img
             src={titleImg}
             alt="Winter of Projects"
-            className="max-w-[400px] md:max-w-[500px] w-full object-contain"
+            className="max-w-[350px] sm:max-w-[450px] md:max-w-[550px] w-full object-contain"
             style={{
-              maxHeight: '120px', // limit height
+              maxHeight: '140px',
               objectFit: 'contain',
-              marginTop: '-10px', // reduce top whitespace visually
-              marginBottom: '-10px', // reduce bottom whitespace
             }}
           />
         </div>
 
         {/* Subtitle */}
         <p
-          className="text-2xl md:text-3xl text-slate-300 mb-3 fade-in italic"
+          className="text-2xl sm:text-3xl md:text-3xl text-slate-300 mb-3 fade-in italic px-4"
           style={{ animationDelay: '0.6s', opacity: 0 }}
         >
           Winter is Coming
         </p>
 
         <div
-          className="w-24 h-px bg-slate-500 mb-10 fade-in"
+          className="w-24 h-px bg-slate-500 mb-8 fade-in"
           style={{ animationDelay: '0.8s', opacity: 0 }}
         />
 
         {/* Event Info */}
         <div
-          className="text-center mb-10 space-y-2 fade-in text-slate-200"
+          className="text-center mb-8 space-y-2 fade-in text-slate-200 px-4"
           style={{ animationDelay: '1s', opacity: 0 }}
         >
-          <p className="text-lg md:text-xl">The Great Convergence</p>
-          <p className="text-base md:text-lg text-slate-400">
+          <p className="text-lg sm:text-xl md:text-xl">The Great Convergence</p>
+          <p className="text-base sm:text-lg md:text-lg text-slate-400">
             Date & Venue TBA
           </p>
         </div>
 
-        {/* Buttons */}
+        {/* Buttons - Stacked vertically on mobile */}
         <div
-          className="flex flex-col sm:flex-row gap-5 fade-in"
+          className="flex flex-col gap-4 fade-in w-full max-w-sm mx-auto mb-10"
           style={{ animationDelay: '1.2s', opacity: 0 }}
         >
-         <Link to="/register">
-            <button className="group relative px-10 py-3 border-2 border-slate-400 text-slate-200 font-semibold text-lg tracking-wider overflow-hidden transition-all duration-300 hover:border-slate-100 hover:text-white">
-              <span className="relative z-10">REGISTER</span>
+          <Link to="/register" className="w-full">
+            <button className="group relative w-full px-8 py-4 border-2 border-slate-400 text-slate-200 font-semibold text-lg tracking-wider overflow-hidden transition-all duration-300 hover:border-slate-100 hover:text-white">
+              <span className="relative z-10">REGISTER NOW</span>
               <div className="absolute inset-0 bg-slate-700/70 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </button>
           </Link>
 
-          <button className="group relative px-10 py-3 border-2 border-slate-400 text-slate-200 font-semibold text-lg tracking-wider overflow-hidden transition-all duration-300 hover:border-slate-100 hover:text-white">
+          <button className="group relative w-full px-8 py-4 border-2 border-slate-400 text-slate-200 font-semibold text-lg tracking-wider overflow-hidden transition-all duration-300 hover:border-slate-100 hover:text-white">
             <span className="relative z-10">BROCHURE</span>
             <div className="absolute inset-0 bg-slate-700/70 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </button>
         </div>
 
-        {/* Quote */}
+        {/* Quote - With proper spacing */}
         <div
-          className="absolute bottom-10 text-center fade-in"
+          className="text-center fade-in mt-auto mb-8 px-4"
           style={{ animationDelay: '1.4s', opacity: 0 }}
         >
-          <p className="text-slate-500 text-sm italic">
+          <p className="text-slate-500 text-sm md:text-sm italic">
             "The lone wolf dies, but the pack survives"
           </p>
         </div>

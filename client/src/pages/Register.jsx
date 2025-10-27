@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -42,7 +41,7 @@ export default function Register() {
       } else {
         setMessage(data.message || 'The oath was rejected');
       }
-    } catch (error) {
+    } catch {
       setMessage('The ravens could not reach the maester');
     } finally {
       setLoading(false);
@@ -50,7 +49,7 @@ export default function Register() {
   };
 
   return (
-    <div className="relative min-h-screen text-white overflow-hidden">
+    <div className="relative min-h-screen text-white overflow-hidden pt-20">
       <style>{`
         @import url('https://fonts.cdnfonts.com/css/game-of-thrones');
 
@@ -81,7 +80,7 @@ export default function Register() {
       `}</style>
 
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-black"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-slate-900 via-slate-800 to-black"></div>
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: `radial-gradient(circle at 20% 50%, rgba(148, 163, 184, 0.3) 0%, transparent 50%),
                          radial-gradient(circle at 80% 80%, rgba(148, 163, 184, 0.2) 0%, transparent 50%)`
@@ -89,14 +88,6 @@ export default function Register() {
 
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
-          {/* Back Button */}
-          <Link to="/" className="inline-flex items-center text-slate-400 hover:text-slate-200 mb-6 transition-colors duration-300">
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span className="text-sm tracking-wider">Return to the Wall</span>
-          </Link>
-
           {/* Card */}
           <div className="bg-slate-900/60 backdrop-blur-md border border-slate-700/50 rounded-lg shadow-2xl p-8 fade-in">
             {/* Direwolf Icon */}
